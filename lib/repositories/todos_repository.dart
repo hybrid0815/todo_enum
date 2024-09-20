@@ -1,6 +1,6 @@
 import 'package:todo_enum/models/todo_model.dart';
 
-abstract class TodosPrepository {
+abstract class TodosRepository {
   Future<List<Todo>> fetchTodos();
   Future<void> addTodo({required Todo todo});
   Future<void> editTodo({required String id, required String desc});

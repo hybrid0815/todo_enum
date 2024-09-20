@@ -12,7 +12,7 @@ final initalTodos = [
 const double kProbabilityOfError = 0.5;
 const int kDelayDuration = 1;
 
-class FakeTodoRepository implements TodosPrepository {
+class FakeTodoRepository implements TodosRepository {
   List<Map<String, dynamic>> fakeTodos = initalTodos;
   final Random random = Random();
 
