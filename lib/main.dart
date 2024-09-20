@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todo_enum/repositories/fake_todo_repository.dart';
+import 'package:todo_enum/repositories/fake_todos_repository.dart';
 import 'package:todo_enum/repositories/providers/todos_repository_provider.dart';
 
 import 'pages/providers/theme_provider.dart';
@@ -9,7 +9,7 @@ import 'pages/todos_page.dart';
 void main() {
   runApp(ProviderScope(
     overrides: [
-      todosRepositoryProvider.overrideWithValue(FakeTodoRepository())
+      todosRepositoryProvider.overrideWithValue(FakeTodosRepository())
     ],
     child: const MyApp(),
   ));

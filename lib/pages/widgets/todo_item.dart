@@ -26,6 +26,7 @@ class TodoItem extends ConsumerWidget {
       leading: Checkbox(
         value: todo.completed,
         onChanged: (value) {
+          print(value);
           ref.read(todoListProvider.notifier).toggleTodo(todo.id);
         },
       ),
@@ -117,10 +118,6 @@ class _ConfirmEditDialogState extends ConsumerState<ConfirmEditDialog> {
         decoration: InputDecoration(
           errorText: error ? 'Value cannot be empty' : null,
         ),
-        onSubmitted: (desc) {
-          ref.read(todoListProvider.notifier).editTodo(widget.todo.id, desc);
-          Navigator.of(context).pop();
-        },
       ),
       actions: [
         TextButton(
