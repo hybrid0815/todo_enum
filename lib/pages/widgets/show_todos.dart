@@ -15,6 +15,8 @@ class ShowTodos extends ConsumerStatefulWidget {
 }
 
 class _ShowTodosState extends ConsumerState<ShowTodos> {
+  Widget prevTodosWidget = const SizedBox.shrink();
+
   @override
   void initState() {
     super.initState();
@@ -54,10 +56,37 @@ class _ShowTodosState extends ConsumerState<ShowTodos> {
         return const SizedBox.shrink();
       case TodoListStatus.loading:
         return const Center(child: CircularProgressIndicator());
+      case TodoListStatus.failure when prevTodosWidget is SizedBox:
+        return buildErrorCase(todoListState);
       case TodoListStatus.failure:
       case TodoListStatus.success:
-        return buildSuccessCase();
+        prevTodosWidget = buildSuccessCase();
+        return prevTodosWidget;
     }
+  }
+
+  Widget buildErrorCase(TodoListState state) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            state.error,
+            style: const TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 20),
+          OutlinedButton(
+            onPressed: () {
+              ref.read(todoListProvider.notifier).fetchTodos();
+            },
+            child: const Text(
+              'Please Retry!',
+              style: TextStyle(fontSize: 20),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget buildSuccessCase() {

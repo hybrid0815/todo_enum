@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo_enum/models/todo_list_status.dart';
 
 import '../providers/active_todo_count_provider.dart';
 import '../providers/theme_provider.dart';
@@ -32,16 +33,16 @@ class TodoHeader extends ConsumerWidget {
         Row(
           children: [
             IconButton(
-              onPressed: () {
-                ref.read(themeProvider.notifier).toggleTheme();
-              },
+              onPressed: todoListState.status == TodoListStatus.loading
+                  ? null
+                  : () => ref.read(themeProvider.notifier).toggleTheme(),
               icon: Icon(
                   theme == AppTheme.light ? Icons.light_mode : Icons.dark_mode),
             ),
             IconButton(
-              onPressed: () {
-                ref.read(todoListProvider.notifier).fetchTodos();
-              },
+              onPressed: todoListState.status == TodoListStatus.loading
+                  ? null
+                  : () => ref.read(todoListProvider.notifier).fetchTodos(),
               icon: const Icon(Icons.refresh),
             ),
           ],

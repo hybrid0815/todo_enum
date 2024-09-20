@@ -10,7 +10,7 @@ const initalTodos = [
 ];
 
 const double kProbabilityOfError = 0.5;
-const int kDelayDuration = 1;
+const int kDelayDuration = 2;
 
 class FakeTodosRepository implements TodosRepository {
   List<Map<String, dynamic>> fakeTodos = initalTodos;
