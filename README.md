@@ -20,14 +20,32 @@
 ## 순서
 
 1. TodosRepository 추상 클래스
+
+   - 리모트 API, DB 에서 데이터를 다루는 함수들을 정의만 한다.
+   - Future 리턴
+
 2. FakeTodosRepository 구현
+
+   - 함수들을 구현한다.
    - Future, async
-3. todosRepositoryProvider 생성 TodosRepository 반환 (단순 프로바이더. ref.read().함수())
-4. main ProviderScope를 사용 TodosRepository를 FakeTodosRepository 오버라이드
-5. TodoListState 클래스 생성
+
+3. todosRepositoryProvider 생성
+
+   - TodosRepository 반환 (단순 프로바이더. ref.read().함수())
+   - main ProviderScope를 사용odosRepository를FakeTodosRepository 오버라이드
+
+4. TodoListState 클래스 생성
+
    - enum TodoListStatus
    - List<Todo>
    - String error
-6. TodoListProvider 리팩토링
+
+5. TodoListProvider 리팩토링
+
    - 상태 변경
    - 데이터 변경 (CRUD)
+
+6. 에러 혹은 로딩시 이전 변화가 없는 이전 데이터에 대해서도 렌더링 하는 문제.
+   - 로딩시 이전 위젯들을 저장하고 있다가 보여 주면 다시 렌더링 거는 문제를 해결 할수 있다.
+   - 그러면 로딩 인디케이터를 사용할수 없다.
+   - loader_overlay 패키지를 사용해 해결.

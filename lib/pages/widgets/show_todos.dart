@@ -55,10 +55,13 @@ class _ShowTodosState extends ConsumerState<ShowTodos> {
       case TodoListStatus.initial:
         return const SizedBox.shrink();
       case TodoListStatus.loading:
-        return const Center(child: CircularProgressIndicator());
+        // 인디케이터가 나온후 사라지면 모든 아이템을 다시 렌더링을 하기 때문에 비효율적이다.
+        // return const Center(child: CircularProgressIndicator());
+        return prevTodosWidget;
       case TodoListStatus.failure when prevTodosWidget is SizedBox:
         return buildErrorCase(todoListState);
       case TodoListStatus.failure:
+        return prevTodosWidget;
       case TodoListStatus.success:
         prevTodosWidget = buildSuccessCase();
         return prevTodosWidget;

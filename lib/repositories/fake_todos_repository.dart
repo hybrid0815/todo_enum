@@ -9,7 +9,7 @@ const initalTodos = [
   {'id': '3', 'desc': 'Do homework', 'completed': false},
 ];
 
-const double kProbabilityOfError = 0.5;
+const double kProbabilityOfError = 0.0;
 const int kDelayDuration = 2;
 
 class FakeTodosRepository implements TodosRepository {

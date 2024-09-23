@@ -12,6 +12,7 @@ class TodoItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('[TodoItem] build()');
     final todo = ref.watch(todoItemProvider);
 
     return ListTile(
